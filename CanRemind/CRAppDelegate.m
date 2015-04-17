@@ -3,7 +3,8 @@
 //  CanRemind
 //
 //  Created by Joshua Howland on 6/5/14.
-//  Copyright (c) 2014 DevMountain. All rights reserved.
+//  Updated by Taylor Mott on 4/16/15.
+//  Copyright (c) 2015 DevMountain. All rights reserved.
 //
 
 #import "CRAppDelegate.h"
@@ -52,7 +53,11 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     
-    [[[UIAlertView alloc] initWithTitle:@"You were notified" message:notification.alertBody delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
+    UIAlertController *notificationAlert = [UIAlertController alertControllerWithTitle:@"You were notified" message:notification.alertBody preferredStyle:UIAlertControllerStyleAlert];
+    
+    [notificationAlert addAction:[UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil]];
+    
+    [self.window.rootViewController presentViewController:notificationAlert animated:YES completion:nil];
     
     application.applicationIconBadgeNumber = 0;
 
